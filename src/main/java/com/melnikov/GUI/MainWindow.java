@@ -16,13 +16,10 @@ public class MainWindow {
 
     ClickListener clickListener = new ClickListener(this);
     UpgradeListener upgradeListener = new UpgradeListener(this);
-    MajorUpgradeListener majorUpgradeListener = new MajorUpgradeListener(this);
     ResetListener resetListener = new ResetListener(this);
-    PerSecListener1 perSecListener1 = new PerSecListener1(this);
-    PerSecListener2 perSecListener2 = new PerSecListener2(this);
+    PerSecListener perSecListener = new PerSecListener(this);
 
-    Timer timer1;
-    Timer timer2;
+    Timer timer;
 
     public MainWindow() {
         JFrame frame = new JFrame("Clicker");
@@ -40,14 +37,14 @@ public class MainWindow {
 
         clickButton.addActionListener(clickListener);
         upgradeClickButton.addActionListener(upgradeListener);
-        majorUpgradeClickButton.addActionListener(majorUpgradeListener);
-        perSecUpgradeButton.addActionListener(perSecListener1);
-        majorPerSecUpgradeButton.addActionListener(perSecListener2);
+        majorUpgradeClickButton.addActionListener(upgradeListener);
+        perSecUpgradeButton.addActionListener(perSecListener);
+        majorPerSecUpgradeButton.addActionListener(perSecListener);
         resetButton.addActionListener(resetListener);
 
         score = new JLabel("|Bank - " + Bank.state + "$|");
         perClick = new JLabel("|PerClick - " + Bank.plus + "$|");
-        perSecond = new JLabel("|PerSec - " + Bank.perSec1 + "$|");
+        perSecond = new JLabel("|PerSec - " + Bank.perSec + "$|");
 
         frame.add(score);
         frame.add(perClick);
@@ -63,25 +60,17 @@ public class MainWindow {
         frame.setVisible(true);
     }
 
-    public void setTimer1(){
-        timer1 = new Timer(1000, new ActionListener() {
+    public void setTimer(){
+        timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Bank.timeIncrement1();
+                Bank.timeIncrement();
                 score.setText("|Bank - " + Bank.state + "$|");
+                System.out.println("Bank has been incremented by TIMER. Bank state now: " + Bank.state + "$. PerSec: " + Bank.perSec + "$.");
             }
         });
     }
 
-    public void setTimer2(){
-        timer2 = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Bank.timeIncrement2();
-                score.setText("|Bank - " + Bank.state + "$|");
-            }
-        });
-    }
 
     public JLabel getScore() {
         return score;
@@ -92,15 +81,12 @@ public class MainWindow {
         return perClick;
     }
 
-    public Timer getTimer1() {
-        return timer1;
+    public Timer getTimer() {
+        return timer;
     }
 
     public JLabel getPerSecond() {
         return perSecond;
     }
 
-    public Timer getTimer2() {
-        return timer2;
-    }
 }

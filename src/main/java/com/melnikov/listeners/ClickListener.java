@@ -17,5 +17,6 @@ public class ClickListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Bank.increment();
         mainWindow.getScore().setText("|Bank - " + Bank.state + "$|");
+        System.out.println("Click was registered. Bank was incremented by: " + Bank.plus + "$. Bank state now is: " + Bank.state + "$.");
     }
 }
