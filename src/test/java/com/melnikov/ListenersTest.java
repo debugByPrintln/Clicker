@@ -19,9 +19,8 @@ public class ListenersTest {
 
     @AfterEach
     public void setToDefault(){
-        Bank.state = 0;
-        Bank.perSec = 0;
-        Bank.plus = 1;
+        Bank.setToDefault();
+
         System.out.println("\n ---Scores were dropped---\n");
     }
 
