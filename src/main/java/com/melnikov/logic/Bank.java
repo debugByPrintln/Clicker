@@ -11,15 +11,14 @@ public class Bank {
         state += plus;
     }
 
-    public static void upgrade(int i){
-        if (i == 1){
-            state -= 100;
-            plus += 1;
-        }
-        else if (i == 10){
-            state -= 1000;
-            plus += 10;
-        }
+    public static void upgrade(){
+        state -= 100;
+        plus += 1;
+    }
+
+    public static void majorUpgrade(){
+        state -= 1000;
+        plus += 10;
     }
 
     public static void setToDefault(){
@@ -28,15 +27,14 @@ public class Bank {
         perSec = 0;
     }
 
-    public static void increasePS(int i){
-        if (i == 1){
-            state -= 1000;
-            perSec += 1;
-        }
-        else if (i == 10){
-            state -= 10000;
-            perSec += 10;
-        }
+    public static void increasePS(){
+        state -= 1000;
+        perSec += 1;
+    }
+
+    public static void majorIncreasePS(){
+        state -= 10000;
+        perSec += 10;
     }
 
     public static void timeIncrement(){

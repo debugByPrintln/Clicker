@@ -2,6 +2,7 @@ package com.melnikov.GUI;
 
 import com.melnikov.listeners.*;
 import com.melnikov.logic.Bank;
+import com.melnikov.logic.Upgrades;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,38 +10,40 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MainWindow {
-    JLabel score;
-    JLabel perClick;
-    JLabel perSecond;
+    private final JLabel score;
+    private final JLabel perClick;
+    private final JLabel perSecond;
 
+    private final JButton clickButton;
+    private final JButton upgradeClickButton;
+    private final JButton majorUpgradeClickButton;
+    private final JButton perSecUpgradeButton;
+    private final JButton majorPerSecUpgradeButton;
+    private final JButton resetButton;
 
-    ClickListener clickListener = new ClickListener(this);
-    UpgradeListener upgradeListener = new UpgradeListener(this);
-    ResetListener resetListener = new ResetListener(this);
-    PerSecListener perSecListener = new PerSecListener(this);
-
-    Timer timer;
+    private Timer timer;
 
     public MainWindow() {
         JFrame frame = new JFrame("Clicker");
+
         frame.setLayout(new FlowLayout());
         frame.setSize(500, 200);
         frame.setLocation(800, 300);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        JButton clickButton = new JButton("CLICK!");
-        JButton upgradeClickButton = new JButton("+1$ per click. Price - 100$");
-        JButton majorUpgradeClickButton = new JButton("+10$ per click. Price - 1000$");
-        JButton perSecUpgradeButton = new JButton("+1$ per second. Price - 1000$");
-        JButton majorPerSecUpgradeButton = new JButton("+10$ per second. Price - 10000$");
-        JButton resetButton = new JButton("Reset Game");
+        clickButton = new JButton("CLICK!");
+        upgradeClickButton = new JButton("+1$ per click. Price - 100$. (" + Upgrades.clickUpgrades + ")");
+        majorUpgradeClickButton = new JButton("+10$ per click. Price - 1000$. (" + Upgrades.majorClickUpgrades + ")");
+        perSecUpgradeButton = new JButton("+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")");
+        majorPerSecUpgradeButton = new JButton("+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")");
+        resetButton = new JButton("Reset Game");
 
-        clickButton.addActionListener(clickListener);
-        upgradeClickButton.addActionListener(upgradeListener);
-        majorUpgradeClickButton.addActionListener(upgradeListener);
-        perSecUpgradeButton.addActionListener(perSecListener);
-        majorPerSecUpgradeButton.addActionListener(perSecListener);
-        resetButton.addActionListener(resetListener);
+        clickButton.addActionListener(new ClickListener(this));
+        upgradeClickButton.addActionListener(new UpgradeListener(this));
+        majorUpgradeClickButton.addActionListener(new UpgradeListener(this));
+        perSecUpgradeButton.addActionListener(new PerSecListener(this));
+        majorPerSecUpgradeButton.addActionListener(new PerSecListener(this));
+        resetButton.addActionListener(new ResetListener(this));
 
         score = new JLabel("|Bank - " + Bank.state + "$|");
         perClick = new JLabel("|PerClick - " + Bank.plus + "$|");
@@ -76,7 +79,6 @@ public class MainWindow {
         return score;
     }
 
-
     public JLabel getPerClick() {
         return perClick;
     }
@@ -89,4 +91,19 @@ public class MainWindow {
         return perSecond;
     }
 
+    public JButton getUpgradeClickButton() {
+        return upgradeClickButton;
+    }
+
+    public JButton getMajorUpgradeClickButton() {
+        return majorUpgradeClickButton;
+    }
+
+    public JButton getPerSecUpgradeButton() {
+        return perSecUpgradeButton;
+    }
+
+    public JButton getMajorPerSecUpgradeButton() {
+        return majorPerSecUpgradeButton;
+    }
 }
