@@ -22,6 +22,8 @@ public class ListenersTest {
     @AfterEach
     public void setToDefault(){
         Bank.setToDefault();
+        Upgrades.setToDefault();
+        Prices.setToDefault();
 
         System.out.println("\n ---Scores were dropped---\n");
     }
