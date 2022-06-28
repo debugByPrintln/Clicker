@@ -12,12 +12,12 @@ public class Bank {
     }
 
     public static void upgrade(){
-        state -= 100;
+        state -= Prices.clickUpgrade;
         plus += 1;
     }
 
     public static void majorUpgrade(){
-        state -= 1000;
+        state -= Prices.majorClickUpgrade;
         plus += 10;
     }
 
@@ -28,12 +28,12 @@ public class Bank {
     }
 
     public static void increasePS(){
-        state -= 1000;
+        state -= Prices.perSecUpgrade;
         perSec += 1;
     }
 
     public static void majorIncreasePS(){
-        state -= 10000;
+        state -= Prices.majorPerSecUpgrade;
         perSec += 10;
     }
 

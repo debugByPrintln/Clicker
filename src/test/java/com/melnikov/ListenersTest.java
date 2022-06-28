@@ -6,6 +6,7 @@ import com.melnikov.listeners.PerSecListener;
 import com.melnikov.listeners.ResetListener;
 import com.melnikov.listeners.UpgradeListener;
 import com.melnikov.logic.Bank;
+import com.melnikov.logic.Prices;
 import com.melnikov.logic.Upgrades;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -42,13 +43,19 @@ public class ListenersTest {
         assertEquals(0, Bank.perSec);
         Bank.state = 11000;
 
-        perSecListener.actionPerformed(new ActionEvent(new JButton(), 1, "+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")"));
+        perSecListener.actionPerformed(new ActionEvent(new JButton(), 1, "+1$ per second. Price - " + Prices.perSecUpgrade +"$. " +
+                "(" + Upgrades.perSecUpgrades + ")"));
         assertEquals(1, Bank.perSec);
 
-        perSecListener.actionPerformed(new ActionEvent(new JButton(), 1, "+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")"));
+        perSecListener.actionPerformed(new ActionEvent(new JButton(), 1, "+10$ per second. Price - " + Prices.majorPerSecUpgrade +"$. " +
+                "(" + Upgrades.majorPerSecUpgrades + ")"));
         assertEquals(11, Bank.perSec);
+
         assertEquals(1, Upgrades.perSecUpgrades);
         assertEquals(1, Upgrades.majorPerSecUpgrades);
+
+        assertEquals(1100, Prices.perSecUpgrade);
+        assertEquals(11000, Prices.majorPerSecUpgrade);
     }
 
     @Test
@@ -73,6 +80,11 @@ public class ListenersTest {
         assertEquals(0, Upgrades.majorClickUpgrades);
         assertEquals(0, Upgrades.perSecUpgrades);
         assertEquals(0, Upgrades.majorPerSecUpgrades);
+
+        assertEquals(100, Prices.clickUpgrade);
+        assertEquals(1000, Prices.majorClickUpgrade);
+        assertEquals(1000, Prices.perSecUpgrade);
+        assertEquals(10000, Prices.majorPerSecUpgrade);
     }
 
     @Test
@@ -81,12 +93,18 @@ public class ListenersTest {
         assertEquals(1, Bank.plus);
         Bank.state = 1100;
 
-        upgradeListener.actionPerformed(new ActionEvent(new JButton(), 1, "+1$ per click. Price - 100$. (" + Upgrades.clickUpgrades + ")"));
+        upgradeListener.actionPerformed(new ActionEvent(new JButton(), 1, "+1$ per click. Price - " + Prices.clickUpgrade + "$. " +
+                "(" + Upgrades.clickUpgrades + ")"));
         assertEquals(2, Bank.plus);
 
-        upgradeListener.actionPerformed(new ActionEvent(new JButton(), 1, "+10$ per click. Price - 1000$. (" + Upgrades.majorClickUpgrades + ")"));
+        upgradeListener.actionPerformed(new ActionEvent(new JButton(), 1, "+10$ per click. Price - " + Prices.majorClickUpgrade + "$. " +
+                "(" + Upgrades.majorClickUpgrades + ")"));
         assertEquals(12, Bank.plus);
+
         assertEquals(1, Upgrades.clickUpgrades);
         assertEquals(1, Upgrades.majorClickUpgrades);
+
+        assertEquals(110, Prices.clickUpgrade);
+        assertEquals(1100, Prices.majorClickUpgrade);
     }
 }

@@ -2,6 +2,7 @@ package com.melnikov.GUI;
 
 import com.melnikov.listeners.*;
 import com.melnikov.logic.Bank;
+import com.melnikov.logic.Prices;
 import com.melnikov.logic.Upgrades;
 
 import javax.swing.*;
@@ -31,12 +32,23 @@ public class MainWindow {
         frame.setLocation(800, 300);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+
         clickButton = new JButton("CLICK!");
-        upgradeClickButton = new JButton("+1$ per click. Price - 100$. (" + Upgrades.clickUpgrades + ")");
-        majorUpgradeClickButton = new JButton("+10$ per click. Price - 1000$. (" + Upgrades.majorClickUpgrades + ")");
-        perSecUpgradeButton = new JButton("+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")");
-        majorPerSecUpgradeButton = new JButton("+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")");
+
+        upgradeClickButton = new JButton("+1$ per click. Price - " + Prices.clickUpgrade + "$. " +
+                "(" + Upgrades.clickUpgrades + ")");
+
+        majorUpgradeClickButton = new JButton("+10$ per click. Price - " + Prices.majorClickUpgrade + "$. " +
+                "(" + Upgrades.majorClickUpgrades + ")");
+
+        perSecUpgradeButton = new JButton("+1$ per second. Price - " + Prices.perSecUpgrade +"$. " +
+                "(" + Upgrades.perSecUpgrades + ")");
+
+        majorPerSecUpgradeButton = new JButton("+10$ per second. Price - " + Prices.majorPerSecUpgrade +"$. " +
+                "(" + Upgrades.majorPerSecUpgrades + ")");
+
         resetButton = new JButton("Reset Game");
+
 
         clickButton.addActionListener(new ClickListener(this));
         upgradeClickButton.addActionListener(new UpgradeListener(this));

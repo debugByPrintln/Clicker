@@ -2,6 +2,7 @@ package com.melnikov.listeners;
 
 import com.melnikov.GUI.MainWindow;
 import com.melnikov.logic.Bank;
+import com.melnikov.logic.Prices;
 import com.melnikov.logic.Upgrades;
 
 import java.awt.event.ActionEvent;
@@ -16,11 +17,17 @@ public class ResetListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        Prices.setToDefault();
         Upgrades.setToDefault();
-        mainWindow.getUpgradeClickButton().setText("+1$ per click. Price - 100$. (" + Upgrades.clickUpgrades + ")");
-        mainWindow.getMajorUpgradeClickButton().setText("+10$ per click. Price - 1000$. (" + Upgrades.majorClickUpgrades + ")");
-        mainWindow.getPerSecUpgradeButton().setText("+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")");
-        mainWindow.getMajorPerSecUpgradeButton().setText("+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")");
+
+        mainWindow.getUpgradeClickButton().setText("+1$ per click. Price - " + Prices.clickUpgrade + "$. " +
+                "(" + Upgrades.clickUpgrades + ")");
+        mainWindow.getMajorUpgradeClickButton().setText("+10$ per click. Price - " + Prices.majorClickUpgrade + "$. " +
+                "(" + Upgrades.majorClickUpgrades + ")");
+        mainWindow.getPerSecUpgradeButton().setText("+1$ per second. Price - " + Prices.perSecUpgrade +"$. " +
+                "(" + Upgrades.perSecUpgrades + ")");
+        mainWindow.getMajorPerSecUpgradeButton().setText("+10$ per second. Price - " + Prices.majorPerSecUpgrade +"$. " +
+                "(" + Upgrades.majorPerSecUpgrades + ")");
 
         Bank.setToDefault();
         if (!(mainWindow.getTimer() == null) && mainWindow.getTimer().isRunning()){

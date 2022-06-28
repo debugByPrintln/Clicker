@@ -2,6 +2,7 @@ package com.melnikov.listeners;
 
 import com.melnikov.GUI.MainWindow;
 import com.melnikov.logic.Bank;
+import com.melnikov.logic.Prices;
 import com.melnikov.logic.Upgrades;
 
 import java.awt.event.ActionEvent;
@@ -16,15 +17,18 @@ public class PerSecListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")")) {
+        if (e.getActionCommand().equals("+1$ per second. Price - " + Prices.perSecUpgrade +"$. " +
+                "(" + Upgrades.perSecUpgrades + ")")) {
 
-            if (Bank.state >= 1000) {
+            if (Bank.state >= Prices.perSecUpgrade) {
                 if (mainWindow.getTimer() == null || !mainWindow.getTimer().isRunning()) {
-
-                    Upgrades.perSecUpgrade();
-                    mainWindow.getPerSecUpgradeButton().setText("+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")");
-
                     Bank.increasePS();
+                    Upgrades.perSecUpgrade();
+                    Prices.increasePerSecUpgrade();
+                    mainWindow.getPerSecUpgradeButton().setText("+1$ per second. Price - " + Prices.perSecUpgrade +"$. " +
+                            "(" + Upgrades.perSecUpgrades + ")");
+
+
                     mainWindow.getPerSecond().setText("|PerSec - " + Bank.perSec + "$|");
                     mainWindow.getScore().setText("|Bank - " + Bank.state + "$|");
                     mainWindow.setTimer();
@@ -34,10 +38,13 @@ public class PerSecListener implements ActionListener {
 
 
                 else {
-                    Upgrades.perSecUpgrade();
-                    mainWindow.getPerSecUpgradeButton().setText("+1$ per second. Price - 1000$. (" + Upgrades.perSecUpgrades + ")");
-
                     Bank.increasePS();
+                    Upgrades.perSecUpgrade();
+                    Prices.increasePerSecUpgrade();
+                    mainWindow.getPerSecUpgradeButton().setText("+1$ per second. Price - " + Prices.perSecUpgrade +"$. " +
+                            "(" + Upgrades.perSecUpgrades + ")");
+
+
                     mainWindow.getPerSecond().setText("|PerSec - " + Bank.perSec + "$|");
                     mainWindow.getScore().setText("|Bank - " + Bank.state + "$|");
                     System.out.println("PerSec was incremented by 1$. PerSec now: " + Bank.perSec + "$.");
@@ -47,15 +54,18 @@ public class PerSecListener implements ActionListener {
 
 
 
-        else if(e.getActionCommand().equals("+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")")) {
+        else if(e.getActionCommand().equals("+10$ per second. Price - " + Prices.majorPerSecUpgrade +"$. " +
+                "(" + Upgrades.majorPerSecUpgrades + ")")) {
 
-            if (Bank.state >= 10000) {
+            if (Bank.state >= Prices.majorPerSecUpgrade) {
                 if (mainWindow.getTimer() == null || !mainWindow.getTimer().isRunning()) {
-
-                    Upgrades.majorPerSecUpgrade();
-                    mainWindow.getMajorPerSecUpgradeButton().setText("+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")");
-
                     Bank.majorIncreasePS();
+                    Upgrades.majorPerSecUpgrade();
+                    Prices.increaseMajorClickUpgrade();
+                    mainWindow.getMajorPerSecUpgradeButton().setText("+10$ per second. Price - " + Prices.majorPerSecUpgrade +"$. " +
+                            "(" + Upgrades.majorPerSecUpgrades + ")");
+
+
                     mainWindow.getPerSecond().setText("|PerSec - " + Bank.perSec + "$|");
                     mainWindow.getScore().setText("|Bank - " + Bank.state + "$|");
                     mainWindow.setTimer();
@@ -65,10 +75,13 @@ public class PerSecListener implements ActionListener {
 
 
                 else {
-                    Upgrades.majorPerSecUpgrade();
-                    mainWindow.getMajorPerSecUpgradeButton().setText("+10$ per second. Price - 10000$. (" + Upgrades.majorPerSecUpgrades + ")");
-
                     Bank.majorIncreasePS();
+                    Upgrades.majorPerSecUpgrade();
+                    Prices.increaseMajorPerSecUpgrade();
+                    mainWindow.getMajorPerSecUpgradeButton().setText("+10$ per second. Price - " + Prices.majorPerSecUpgrade +"$. " +
+                            "(" + Upgrades.majorPerSecUpgrades + ")");
+
+
                     mainWindow.getPerSecond().setText("|PerSec - " + Bank.perSec + "$|");
                     mainWindow.getScore().setText("|Bank - " + Bank.state + "$|");
                     System.out.println("PerSec was MAJOR incremented by 10$. PerSec now: " + Bank.perSec + "$.");

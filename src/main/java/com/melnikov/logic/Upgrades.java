@@ -7,6 +7,7 @@ public class Upgrades {
     public static int perSecUpgrades = 0;
     public static int majorPerSecUpgrades = 0;
 
+
     public static void clickUpgrade(){
         clickUpgrades++;
     }
